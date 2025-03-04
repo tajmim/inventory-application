@@ -70,7 +70,10 @@
                                         <td class="sorting_1">
                                             {{ $usr->email_verified_at ? 'YES' : 'NO' }}
                                         </td>
-                                        <td>Manager </td>
+                                        <td>
+                                            @foreach ($usr->getRoleNames() as $role)
+                                                {{ $role }}
+                                            @endforeach </td>
                                         <td>{{ $usr->created_at }}</td>
                                         <td>
                                             <!-- edit Button -->

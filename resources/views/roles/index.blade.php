@@ -1,9 +1,12 @@
 @extends('master')
 
+
 @section('content')
+
     <div class="content">
         <div class="page-header">
             <div class="page-title">
+                @include('nav-link')
                 <h4>Roles List</h4>
                 <h6>Manage your Roles</h6>
             </div>
@@ -44,6 +47,9 @@
                                     <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
                                         colspan="1" aria-label="Created On: activate to sort column ascending"
                                         style="width: 119.312px;">Created On</th>
+                                        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
+                                        colspan="1" aria-label="Created On: activate to sort column ascending"
+                                        style="width: 119.312px;">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -58,6 +64,26 @@
                                         <td>{{ $role->name }}</td>
                                         <td class="">{{ $role->guard_name }}</td>
                                         <td>{{ $role->created_at }}</td>
+                                        <td>
+
+                                            <!-- view Button -->
+                                            <a class="me-3" href="{{ route('roles.show', $role->id) }}">
+                                                <img src="assets/img/icons/eye.svg" alt="img">                                            </a>
+                                            <!-- edit Button -->
+                                            <a class="me-3" href="{{ route('roles.edit', $role->id) }}">
+                                                <img src="assets/img/icons/edit.svg" alt="img">
+                                            </a>
+                                            <!-- Delete Button -->
+                                            <form action="{{ route('roles.destroy', $role->id) }}" method="POST"
+                                                style="display:inline;"
+                                                onsubmit="return confirm('Are you sure you want to delete this user?');">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" style="border: none; background: none; padding: 0;">
+                                                    <img src="{{ asset('assets/img/icons/delete.svg') }}" alt="Delete">
+                                                </button>
+                                            </form>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

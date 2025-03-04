@@ -22,12 +22,13 @@ class UserController extends Controller {
     }
 
     public function store( Request $request ) {
+        // dd($request->role);
         $request->validate( [
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|confirmed|min:6',
 
-            'role' => 'required|exists:roles,id',
+            // 'role' => 'exists:roles,id',
         ] );
 
         $user = User::create( [
@@ -36,6 +37,8 @@ class UserController extends Controller {
             'password' => Hash::make( $request->password ),
             'role_id' => $request->role,
         ] );
+        $user->syncRoles($request->role);
+
 
         return redirect()->route( 'users.index' )->with( 'success', 'User created successfully!' );
     }
@@ -43,7 +46,7 @@ class UserController extends Controller {
     public function edit( $id ) {
         $user = User::findOrFail( $id );
         $roles = Role::all();
-        return view( 'users.edit', compact( 'user' ) );
+        return view( 'users.edit', compact( 'user','roles' ) );
     }
 
     public function update( Request $request, $id ) {
@@ -76,6 +79,8 @@ class UserController extends Controller {
         }
 
         $user->save();
+        $user->syncRoles($request->role);
+
         return redirect()->route( 'users.index' )->with( 'success', 'User updated successfully' );
     }
 

@@ -38,15 +38,15 @@
                                 <label>Mobile</label>
                                 <input type="text" name="mobile" class="form-control">
                             </div> --}}
-                            {{-- <div class="form-group">
+                            <div class="form-group">
                                 <label>Role</label>
-                                <select name="role" class="form-control" required>
-                                    <option value="">Select</option>
+                                <select name="role" class="form-control" >
+                                    {{-- <option value="">Select</option> --}}
                                     @foreach ($roles as $role)
-                                        <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                        <option value="{{ $role->name }}" {{$user->hasRole($role->name) ? "selected" : "" }}>{{ $role->name }} </option>
                                     @endforeach
                                 </select>
-                            </div> --}}
+                            </div>
                             <div class="form-group">
                                 <label>Confirm Password</label>
                                 <div class="pass-group">

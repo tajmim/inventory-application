@@ -12,7 +12,7 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        $permissions = Permission::get();
+        $permissions = Permission::orderBy("id","desc")->paginate(15);
         return view('permissions.index', compact('permissions'));
     }
 
@@ -66,8 +66,11 @@ class PermissionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        //
+    public function destroy( $id ) {
+        $permission = Permission::findOrFail( $id );
+
+        $permission->delete();
+
+        return redirect()->route( 'permissions.index' )->with( 'success', 'permission deleted successfully' );
     }
 }

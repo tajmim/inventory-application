@@ -1,5 +1,6 @@
 @extends('master')
 
+
 @section('content')
     <div class="content">
         <div class="page-header">
@@ -38,6 +39,11 @@
                                     <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
                                         colspan="1" aria-label="User name : activate to sort column ascending"
                                         style="width: 113.975px;">Permission name </th>
+                                        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
+                                        colspan="1" aria-label="User name : activate to sort column ascending"
+                                        style="width: 113.975px;">Action</th>
+
+
 
                                 
                                 </tr>
@@ -52,6 +58,24 @@
                                             </label>
                                         </td>
                                         <td>{{ $permission->name }}</td>
+
+                                        <td>
+                                            <!-- edit Button -->
+                                            {{-- <a class="me-3" href="{{ route('users.edit', $usr->id) }}">
+                                                <img src="assets/img/icons/edit.svg" alt="img">
+                                            </a> --}}
+                                            <!-- Delete Button -->
+                                            <form action="{{ route('permissions.destroy', $permission->id) }}" method="POST"
+                                                style="display:inline;"
+                                                onsubmit="return confirm('Are you sure you want to delete this user?');">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" style="border: none; background: none; padding: 0;">
+                                                    <img src="{{ asset('assets/img/icons/delete.svg') }}" alt="Delete">
+                                                </button>
+                                            </form>
+                                        </td>
+                                        
 
                                     </tr>
                                 @endforeach

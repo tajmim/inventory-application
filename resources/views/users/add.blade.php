@@ -38,10 +38,10 @@
                             </div> --}}
                             <div class="form-group">
                                 <label>Role</label>
-                                <select name="role" class="form-control" required>
+                                <select name="role" class="form-select" >
                                     <option value="">Select</option>
                                     @foreach ($roles as $role)
-                                        <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                        <option value="{{ $role->name }}">{{ $role->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
