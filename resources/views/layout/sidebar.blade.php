@@ -26,23 +26,36 @@
                             </ul>
                         </li>
 
-                        {{-- <li class="submenu">
-                            <a href="{{ route('product.productlist') }}" class=""></a>
-                            <ul class="">
 
+                        <li class="submenu">
+                            <a href="{{ route('products.index') }}" class="{{ (in_array(request()->path(), ['products', 'categories', 'brands', 'products/create', 'categories/create', 'brands/create'])) ? 'subdrop' : '' }}">
+                                <img src="{{ asset('assets/img/icons/product.svg') }}" alt="img">
+                                <span>Products</span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <ul class="{{ (in_array(request()->path(), ['products', 'categories', 'brands', 'products/create', 'categories/create', 'brands/create'])) ? 'd-block' : '' }}">
+                                <li>
+                                    <a href="{{ route('products.index') }}" class="{{ (in_array(request()->path(), ['products', 'products/create'])) ? 'active' : '' }}">Product List</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('categories.index') }}" class="{{ (in_array(request()->path(), ['categories', 'categories/create'])) ? 'active' : '' }}">Categories</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('brands.index') }}" class="{{ (in_array(request()->path(), ['brands', 'brands/create'])) ? 'active' : '' }}">Brands</a>
+                                </li>
                             </ul>
+                        </li>
+                        
 
-                        </li> --}}
+                        
 
 
-
-                        <li class="{{ request()->routeIs('products.*') ? 'active' : '' }}">
+                        {{-- <li class="{{ request()->routeIs('products.*') ? 'active' : '' }}">
                             <a href="{{ route('products.index') }}">
                                 <img src="{{ asset('assets/img/icons/product.svg') }}" alt="img">
-                                {{-- <img src="assets/img/icons/product.svg" alt="img"> --}}
                                 <span>Products</span> 
                             </a>
-                        </li>
+                        </li> --}}
                         
                     </ul>
                 </div>

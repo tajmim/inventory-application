@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\BrandController;
+use App\Http\Controllers\CategoryController;
+
+
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -21,5 +25,9 @@ Route::resource('/users', UserController::class);
 Route::resource('/roles', RoleController::class);
 Route::resource('/permissions', PermissionController::class);
 Route::resource('/products', ProductController::class);
+Route::resource('/brands', BrandController::class);
+Route::resource('/categories', CategoryController::class);
+
+
 
 
