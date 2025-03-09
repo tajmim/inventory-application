@@ -3,11 +3,7 @@
 @section('content')  
   <div id="global-loader">
         <div class="whirly-loader"> </div>
-    </div>
-
-
-
-
+    </div> 
             <div class="content">
                 <div class="page-header">
                     <div class="page-title">

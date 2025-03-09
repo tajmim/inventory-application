@@ -12,8 +12,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        // $categories = Category::orderBy("id","desc")->paginate(15);
-        return view('categories.index');
+        $categories = Category::orderBy("id","desc")->paginate(15);
+        return view('categories.index',compact('categories')); 
     }
 
     /**
@@ -29,7 +29,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
     }
 
     /**
